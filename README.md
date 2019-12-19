@@ -1,4 +1,4 @@
-# Dom Manipulation Redux Boogaloo
+# Dom Manipulation Redux
 
 #### The Humble Text Input
 
@@ -30,10 +30,8 @@ All we need is a button or click event to trigger some code to fetch the value o
 
 Let's write a text input and a button that inserts the input's value into the DOM and then resets the input:
 
-- write some boilerplate HTML / JS files
-- Add a h1 with a default message at the top of the body
-- Add a text input to the markup: `<input type="text" />`
-- Add a button next to the input
+- Add a text input to the html: `<input type="text" />`
+- Add a ```<button>Add</button>``` or ```<input type="submit" />```
 - In the JS file, query select for both elements
 - Add a click event to the button that gets the value of the input using the `value` property
 - Write another function, `updateHeader` that takes a single string as a parameter and updates the textContent of the `h1` with the string
