@@ -2,7 +2,7 @@
 
 #### The Humble Text Input
 
-Mouse (and arbitrary) keyboard events are a good first attempt to process user interactions and update the DOM in process, but there are many more and potentially richer methods at our disposal.  _Input_ tags are one of these methods.
+Mouse (and other various) keyboard events are a good first attempt to process user interactions and update the DOM in process, but there are many more and potentially richer methods at our disposal.  _Input_ tags are one of these methods.
 
 Perhaps the most commonly recognized is the "text" input:
 
@@ -28,16 +28,24 @@ All we need is a button or click event to trigger some code to fetch the value o
 
 ##### Mini-Exercise
 
-Let's write a text input and a button that inserts the input's value into the DOM and then resets the input:
+Let's write up a form with a text input and a button:
 
-- Add a text input to the html: `<input type="text" />`
-- Add a ```<button>Add</button>``` or ```<input type="submit" />```
-- In the JS file, query select for both elements
-- Add a click event to the button that gets the value of the input using the `value` property
-- Write another function, `updateHeader` that takes a single string as a parameter and updates the textContent of the `h1` with the string
-- From the event handler, pass the value of the input as an argument to `updateHeader`
+- Create a ```<form></form>``` element.
+	- All form attributes are optional. You can build a form without the ```<form>``` tag just using ```inputs``` and ```buttons``` but you won't have access to some features specifically designed for ```forms```.
+	- The `action` attribute defines the location (URL) where the form's collected data should be sent when it is submitted. This is the built-in attribute that causes forms to reload a page, and the reason we often have to use ```preventDefault()``` when submitting data. If you decide to build a form without using ```<form>``` tags then you won't need ```preventDefault()``` later on. 
 
-If all goes well you should be able to update the header with arbitrary text from the input + a button click
+- Add a text input to the html: `<input />`. Notice how this tag is self closing.
+	- ```inputs``` have have a ```type``` attribute. The most common is ```text```.
+	- The ```value``` attribute keeps track of the content (or state) inside the input field. This will be very important later.
+	- ```autoFocus``` is an attribute that can be added to force focus to this specific input when the page loads.
+	- The ```autoComplete``` attribute can be set to 'on' or 'off', though it is 'on' by default. When it is 'on,' it will remember and suggest entries previously entered as the input value.
+- Add a ```<button></button>```
+	- Inside a form, a ```button``` and an ```<input type='submit'>``` can be used almost interchangeably. If you use a submit input for this exercise, be sure to assign it a specific class or ID so we can destinguish between inputs later on with JavaScript.
+- For good measure, let's create a ```<section>``` tag. This is where our to-do list will be rendered, so let's give it a class name 'todo-list'
+
+Now let's jump into the our JS file:
+
+- Query select for all of the elements we just created (remember, if you used a submit input instead of a button, you'll need to grab your inputs by ID or class, not by tag name).
 
 #### innerHTML for fun and profit
 
@@ -49,7 +57,7 @@ Setting the `textContent` of an element works for simple pieces of data, but wha
 <button>Add Doggo</button>
 ```
 
-Given the markup above, we could add each submitted value from the input  to an array:
+Given the markup above, we could add each submitted value from the input to an array:
 
 ```js
 const dogs = [];
@@ -76,31 +84,28 @@ Notice that the `ul` is "reset" before rendering the list of dogs.  It's often c
 
 Also, the ES6 "`" string allows the easy creation of splices of HTML with variable sub-strings using string interpolation.
 
-### Lab Time
-
-Another classic intro app to build is the To-Do List for managing tasks that you need to do so that they can become "to-done".
-
-Typically, a user can add a task that is a "to-do", view a list of "to-dos", mark a "to-do" as "to-done" or delete it, and update a "to-do".  To start, let's just try to add a to-do and display the list of to-dos.
-
-- Clone down this repo
-- `cd` into the repo
-- open the `index.html` in the browser
-- open the project in VS Code with `code .`
-
 #### List Some Todos
-Begin by initializing an array of `todos` in `app.js` with a few hardcoded tasks that need to-doing.  It doesn't need to be inside of a function
 
-Write a function `render` _beneath the definition of `todos`_, that renders each todo in the `todos` array to the DOM.  `forEach` will probably prove helpful here.
+Begin by  initializing an empty array and storing it as a variable. This array will eventually contain a set of strings that represent each item on our to-do list.
 
-Test that this displays properly in the browser.
+Now write a function (using whatever syntax you like) that uses a loop to display the items from our array inside the ```section``` tag we created in our HTML.
+	- You can utilize ```<ul>``` and ```<li>``` tags for a list, but to simplify for this exercise, we're just going to create each item as a ```<p>``` tag.
+
+To test that this function works, let's hardcode some to-do items into our array and call the function. We should see each item from the array printed out in the browser.
 
 #### Add a Todo
 
-Above the Todo List in html, add a text input and a button.  In `app.js` register a click event listener on the button that should:
+Register a click event listener on the ```button``` or ```submit```. This button will call a function that should:
 - extract the value of the text input
 - add the value to the `todos` array
-- reset the value of the input to an empty string
-- and finally, re-render the todos list so the newest todo is displayed in the list
+- call the the function that loops through our array and prints them out.
+
+Uh oh, you may have some duplicates!
+
+- In the looping function, add a command that resets the ```innerHTML``` of our ```<section>``` to an empty string before it loops and prints.
+- For good measure let's reset the value of our text input on the click event function as well.
+
+If we've done this correctly, all items we enter into the input field should be printed to our list!
 
 #### Bonus
 
