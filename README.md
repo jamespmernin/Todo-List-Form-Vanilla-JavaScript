@@ -59,7 +59,7 @@ To test that this function works, let's hardcode some to-do items into our array
 
 #### Add a Todo
 
-Register a click event listener on the ```button``` or ```submit```. This button will call a function that should:
+Register a click event listener on the ```button``` or ```submit```. This click needs to call a function that should:
 - extract the value of the text input
 - add the value to the `todos` array
 - call the the function that loops through our array and prints them out.
