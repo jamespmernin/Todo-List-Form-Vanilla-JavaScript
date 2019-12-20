@@ -47,46 +47,10 @@ Now let's jump into the our JS file:
 
 - Query select for all of the elements we just created (remember, if you used a submit input instead of a button, you'll need to grab your inputs by ID or class, not by tag name).
 
-#### innerHTML for fun and profit
-
-Setting the `textContent` of an element works for simple pieces of data, but what if we wanted to track a collection of items that might grow arbitrarily large?  In that case, storing the values in an array and then rendering them to the DOM could be a more maintanable strategy.
-
-```html
-<ul></ul>
-<input type="text" />
-<button>Add Doggo</button>
-```
-
-Given the markup above, we could add each submitted value from the input to an array:
-
-```js
-const dogs = [];
-const input = document.querySelector('input');
-dogs.push(input.value);
-```
-
-and then render it to the `ul`
-
-```js
-const ul = document.querySelector('ul');
-ul.innerHTML = '';
-
-dogs.forEach((dog) => {
-	const el = document.createElement('li');
-	el.innerHTML = `
-	The dog's name is: <span class="bold">${dog}</span>
-	`;
-	ul.append(el);
-});
-```
-
-Notice that the `ul` is "reset" before rendering the list of dogs.  It's often convenient to zero out the content of an element then write a function to just render a collection rather than trying to manage adding/removing things directly with DOM manipulation.
-
-Also, the ES6 "`" string allows the easy creation of splices of HTML with variable sub-strings using string interpolation.
 
 #### List Some Todos
 
-Begin by  initializing an empty array and storing it as a variable. This array will eventually contain a set of strings that represent each item on our to-do list.
+Begin by initializing an empty array and storing it as a variable. This array will eventually contain a set of strings that represent each item on our to-do list.
 
 Now write a function (using whatever syntax you like) that uses a loop to display the items from our array inside the ```section``` tag we created in our HTML.
 	- You can utilize ```<ul>``` and ```<li>``` tags for a list, but to simplify for this exercise, we're just going to create each item as a ```<p>``` tag.
