@@ -1,6 +1,8 @@
-# Dom Manipulation Redux
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)  SOFTWARE ENGINEERING IMMERSIVE
 
-#### The Humble Text Input
+## Dom Manipulation w/ Forms
+
+### The Humble Text Input
 
 Mouse (and other various) keyboard events are a good first attempt to process user interactions and update the DOM in process, but there are many more and potentially richer methods at our disposal.  _Input_ tags are one of these methods.
 
