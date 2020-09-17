@@ -2,6 +2,7 @@ const input = document.querySelector('#todo-input');
 const button = document.querySelector('#todo-button');
 const ul = document.querySelector('#todo-ul');
 const todoItems = [];
+
 function handleSubmit(e) {
   e.preventDefault();
   let listItem = document.createElement('li');
